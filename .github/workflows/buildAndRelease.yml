@@ -14,7 +14,7 @@ jobs:
         id: build
         with:
           flavour: demo
-        uses: ./.github/actions/build-action
+        uses: MirkoMajkicProductDock/BuildAPK@v0.0.1
 
       - name: Show APK path and folder content
         run: |
