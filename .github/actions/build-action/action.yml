@@ -1,14 +1,17 @@
 name: 'Build apk'
 description: 'Builds apk and returns path as output'
 inputs:
-  build-command: # id of input
+  flavour: # id of input
     description: 'Build command to use for generating apk'
     required: false
-    default: 'assembleRelease'
+    default: 'release'
 outputs:
   apk-path:
     description: "Path to APK"
     value: ${{ steps.build-apk.outputs.apk-path }}
+  apk-directory:
+    description: "Directory containing APK"
+    value: ${{ steps.build-apk.outputs.apk-directory }}
 runs:
   using: "composite"
   steps:
@@ -16,12 +19,10 @@ runs:
       id: build-apk
       shell: bash
       env:
-        INPUT_BUILD_COMMAND: ${{ inputs.build-command }}
+        INPUT_FLAVOUR: ${{ inputs.flavour }}
       run: |
-        ./gradlew "$INPUT_BUILD_COMMAND"
-        if [[ "$INPUT_BUILD_COMMAND" == "assembleRelease" ]]; then
-          PATH="app/build/outputs/apk/release/app-release-unsigned.apk"
-        else
-          PATH="Will be implemented"
-        fi
+        ./gradlew assemble"$INPUT_FLAVOUR"
+        PATH="app/build/outputs/apk/$INPUT_FLAVOUR/app-$INPUT_FLAVOUR-unsigned.apk"
+        DIR="app/build/outputs/apk/$INPUT_FLAVOUR"
         echo "apk-path=$(echo $PATH)" >> $GITHUB_OUTPUT
+        echo "apk-directory=$(echo $DIR)" >> $GITHUB_OUTPUT
