@@ -12,7 +12,7 @@ jobs:
 
       - name: Build APK
         id: build
-        uses: ./actions/hello-world-composite-action
+        uses: ./.github/actions/build-action
 
       - name: Show APK path
         run: echo "APK path is ${{ steps.build.outputs.apk-path }}"
