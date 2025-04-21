@@ -18,7 +18,7 @@ runs:
       env:
         INPUT_BUILD_COMMAND: ${{ inputs.build-command }}
       run: |
-        ./gradlew $INPUT_BUILD_COMMAND
+        ./gradlew "$INPUT_BUILD_COMMAND"
         if [[ "$INPUT_BUILD_COMMAND" == "assembleRelease" ]]; then
           PATH="app/build/outputs/apk/release/app-release-unsigned.apk"
         else
