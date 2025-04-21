@@ -10,5 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Build APK
+        id: build
+        uses: ./.github/actions/hello-world-composite-action
+
+      - name: Show APK path
+        run: echo "APK path is ${{ steps.build.outputs.apk-path }}"
