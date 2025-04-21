@@ -2,7 +2,7 @@ name: 'Build apk'
 description: 'Builds apk and returns path as output'
 inputs:
   flavour: # id of input
-    description: 'Build command to use for generating apk'
+    description: 'Pass the flavour you want to build artefacts for'
     required: false
     default: 'release'
 outputs:

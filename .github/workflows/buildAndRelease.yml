@@ -15,8 +15,8 @@ jobs:
         uses: ./.github/actions/build-action
 
       - name: Show APK path
-        run: | 
+        run: |
           echo "APK path is ${{ steps.build.outputs.apk-path }}"
           echo "Folder is  ${{ steps.build.outputs.apk-directory }}"
           echo "Folder content"
-          ls -la steps.build.outputs.apk-directory
+          ls -la ${{ steps.build.outputs.apk-directory }}
