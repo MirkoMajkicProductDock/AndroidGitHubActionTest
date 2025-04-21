@@ -6,7 +6,7 @@ inputs:
     required: false
     default: 'assembleRelease'
 outputs:
-  path:
+  apk-path:
     description: "Path to APK"
     value: ${{ steps.build-apk.outputs.apk-path }}
 runs:
