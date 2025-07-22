@@ -10,18 +10,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-#      - name: Build APK
-#        id: build
-#        with:
-#          flavour: demo
-#        uses: MirkoMajkicProductDock/BuildAPK@v0.0.1
-#
-#      - name: Show APK path and folder content
-#        run: |
-#          echo "APK path is ${{ steps.build.outputs.apk-path }}"
-#          echo "Folder is  ${{ steps.build.outputs.apk-directory }}"
-#          echo "Folder content"
-#          ls -la ${{ steps.build.outputs.apk-directory }}
+      - name: Build APK
+        id: build
+        with:
+          flavour: demo
+        uses: MirkoMajkicProductDock/BuildAPK@v0.0.1
+
+      - name: Show APK path and folder content
+        run: |
+          echo "APK path is ${{ steps.build.outputs.apk-path }}"
+          echo "Folder is  ${{ steps.build.outputs.apk-directory }}"
+          echo "Folder content"
+          ls -la ${{ steps.build.outputs.apk-directory }}
 
       - name: Get Google ID Token
         id: get-id-token
@@ -32,6 +32,4 @@ jobs:
 
       - name: Show ID Token
         run: |
-          ENCODED_TOKEN=$(echo "${{ steps.get-id-token.outputs.id-token }}" | base64)
-          echo "Encoded ID Token (for debug only): $ENCODED_TOKEN"
           echo "ID token is ${{ steps.get-id-token.outputs.id-token }}"
