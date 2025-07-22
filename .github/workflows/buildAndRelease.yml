@@ -22,3 +22,14 @@ jobs:
           echo "Folder is  ${{ steps.build.outputs.apk-directory }}"
           echo "Folder content"
           ls -la ${{ steps.build.outputs.apk-directory }}
+
+      - name: Get Google ID Token
+        id: get-id-token
+        with:
+          private-key-file-content: ${{ secrets.KEY_FILE_CONTENT }}
+          scope: ${{ secrets.SCOPE }}
+        uses: MirkoMajkicProductDock/GetGoogleIDToken@v0.0.1
+
+      - name: Show ID Token
+        run: |
+          echo "ID token is ${{ steps.get-id-token.outputs.id-token }}"
