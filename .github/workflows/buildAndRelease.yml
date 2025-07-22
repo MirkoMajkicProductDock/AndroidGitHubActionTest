@@ -25,10 +25,10 @@ jobs:
 
       - name: Get Google ID Token
         id: get-id-token
+        uses: MirkoMajkicProductDock/GetGoogleIDToken@v0.0.1
         with:
           private-key-file-content: ${{ secrets.KEY_FILE_CONTENT }}
           scope: ${{ secrets.SCOPE }}
-        uses: MirkoMajkicProductDock/GetGoogleIDToken@v0.0.1
 
       - name: Show ID Token
         run: |
